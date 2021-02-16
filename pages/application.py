@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from common.logger import setup
+from pages.auth import LoginPage
 
 
 logger = logging.getLogger()
@@ -22,6 +23,7 @@ class Application:
             )
         except ValueError:
             self.driver = webdriver.Chrome(r"C:\chromedriver.exe", options=options)
+        self.login = LoginPage(self)
 
     def open_main_page(self):
         logger.info("Open main page")

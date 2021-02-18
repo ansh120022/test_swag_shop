@@ -17,12 +17,11 @@ class Application:
         if headless:
             options.add_argument("--headless")
         self.url = url
-        try:
-            self.driver = webdriver.Chrome(
-                ChromeDriverManager().install(), options=options
-            )
-        except ValueError:
-            self.driver = webdriver.Chrome(r"C:\chromedriver.exe", options=options)
+        # try:
+        self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+        # )
+        # except ValueError:
+        #     self.driver = webdriver.Chrome(r"C:\chromedriver.exe", options=options)
         self.login = LoginPage(self)
 
     def open_main_page(self):

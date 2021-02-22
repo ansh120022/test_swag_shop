@@ -9,3 +9,4 @@ class Login:
     LOGIN_SUBMIT = (By.ID, "login-button")
 
     ERROR_ICON = (By.CLASS_NAME, "error-button")
+    ERROR_TEXT = (By.TAG_NAME, "h3")

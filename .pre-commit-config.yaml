@@ -68,3 +68,4 @@ repos:
         files: requirements.*\.txt$
 
       - id: flake8
+        max-line-length: 120

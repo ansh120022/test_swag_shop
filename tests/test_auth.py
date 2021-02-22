@@ -22,8 +22,8 @@ class TestLogin:
 
     def test_do_login_locked(self, app):
         """
-        Заблокированный пользователь после входа
-        не видит картинок
+        Заблокированный пользователь получает ошибку
+        о том, что он заблокированный
         """
 
         app.open_main_page()
@@ -31,16 +31,6 @@ class TestLogin:
 
         assert app.login.error_icon() != []
         assert app.login.get_error_text() == AuthErrors.locked_user
-
-    def test_do_login_problem(self, app):
-        """
-        Проблемный пользователь не видит картинок
-        """
-
-        app.open_main_page()
-        app.login.do_login_problem()
-
-        assert app.login.error_icon() == []
 
     def test_do_login_performance(self, app):
         """

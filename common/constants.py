@@ -1,7 +1,9 @@
 """Файл с различными константами"""
 
 
-class User:
+class Credentials:
+    """Логины и пароли пользователей"""
+
     standard_user = "standard_user"
     locked_out_user = "locked_out_user"
     problem_user = "problem_user"

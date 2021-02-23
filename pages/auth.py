@@ -1,6 +1,6 @@
 import logging
 from locators.auth import Login
-from common.constants import User as u
+from common.constants import Credentials as u
 
 logger = logging.getLogger()
 

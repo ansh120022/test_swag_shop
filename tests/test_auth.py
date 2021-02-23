@@ -1,3 +1,4 @@
+"""Тесты на авторизацию для аккаунтов в различных состояниях"""
 from common.constants import AuthErrors
 
 
@@ -17,8 +18,23 @@ class TestLogin:
 
         app.open_main_page()
         app.login.do_login_standart()
+        product_names = app.product_list.get_list_of_product_names()
 
         assert app.login.error_icon() == []
+        assert len(product_names) > 0, "Товары не отображаются"
+
+    def test_do_login_performance(self, app):
+        """
+        Пользователь с медленным интернетом
+        Авторируется, видит каталог
+        """
+
+        app.open_main_page()
+        app.login.do_login_performance()
+        product_names = app.product_list.get_list_of_product_names()
+
+        assert app.login.error_icon() == []
+        assert len(product_names) > 0, "Товары не отображаются"
 
     def test_do_login_locked(self, app):
         """
@@ -31,17 +47,6 @@ class TestLogin:
 
         assert app.login.error_icon() != []
         assert app.login.get_error_text() == AuthErrors.locked_user
-
-    def test_do_login_performance(self, app):
-        """
-        Авторизация пользователя performance
-        Всё ок
-        """
-
-        app.open_main_page()
-        app.login.do_login_performance()
-
-        assert app.login.error_icon() == []
 
     def test_do_login_nonexistent(self, app):
         """

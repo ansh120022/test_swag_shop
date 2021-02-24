@@ -5,6 +5,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from common.logger import setup
 from pages.auth import LoginPage
 from pages.product_list import ProductList
+from pages.product import ProductPage
 
 
 logger = logging.getLogger()
@@ -26,6 +27,7 @@ class Application:
             self.driver = webdriver.Chrome(r"C:\chromedriver.exe", options=options)
         self.login = LoginPage(self)
         self.product_list = ProductList(self)
+        self.product = ProductPage(self)
 
     def open_main_page(self):
         logger.info("Open main page")

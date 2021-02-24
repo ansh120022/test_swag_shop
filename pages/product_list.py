@@ -4,6 +4,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from locators.product_list import ProductList as p
 from selenium.webdriver.support import expected_conditions as EC
 
+
 logger = logging.getLogger()
 
 
@@ -13,6 +14,9 @@ class ProductList:
 
     def add_to_cart_button(self):
         return self.app.driver.find_element(*p.ADD_TO_CART_BUTTON)
+
+    def remove_button(self):
+        return self.app.driver.find_element(*p.REMOVE_BUTTON)
 
     def left_menu_button(self):
         return self.app.driver.find_element(*p.LEFT_MENU_BUTTON)
@@ -31,6 +35,10 @@ class ProductList:
 
     def item(self):
         return self.app.driver.find_element(*p.ITEM)
+
+    def get_all_products(self):
+        products = self.app.driver.find_elements(*p.ITEM)
+        return products
 
     def items_list(self):
         return self.app.driver.find_element(*p.ITEMS_LIST)
@@ -94,3 +102,12 @@ class ProductList:
             EC.presence_of_element_located(p.SORT_PRICE_LOW_HIGH)
         )
         sort_option.click()
+
+    def get_cart_counter(self):
+        """Значение счётчика на корзине"""
+        not_empty = len(self.app.driver.find_elements(*p.CART_COUNTER)) > 0
+        if not_empty:
+            counter_value = self.app.driver.find_element(*p.CART_COUNTER).text
+            return int(counter_value)
+        else:
+            return 0

@@ -1,4 +1,5 @@
 """Тесты для страницы каталога"""
+from common.constants import ButtonCaptions as button, AssertText as a
 
 
 class TestItemsList:
@@ -56,3 +57,38 @@ class TestSorting:
                 f"Сортировка по убыванию цены не сработала: {product_prices[i]},"
                 f" {product_prices[i + 1]}"
             )
+
+
+class TestAddToCart:
+    """Проверка взаимодействия с корзиной со страницы каталога
+    Добавляем товары, удаляем их и проверяем счётчик корзины"""
+
+    def test_add_to_cart(self, app):
+        """Зайти на страницу"""
+        app.open_main_page()
+        app.login.do_login_standart()
+        product_elements = app.product_list.get_all_products()
+        num_items_in_cart = 0
+        assert (
+            num_items_in_cart == app.product_list.get_cart_counter()
+        ), a.wrong_cart_counter
+
+        """Добавить товары, проверить счётчик"""
+        for product in product_elements:
+            add_cart_button = app.product_list.add_to_cart_button()
+            add_cart_button.click()
+            num_items_in_cart += 1
+        assert (
+            app.product_list.get_cart_counter() == num_items_in_cart
+        ), a.wrong_cart_counter
+        assert add_cart_button.text == button.remove
+
+        """Удалить товары, проверить счётчик"""
+        for product in product_elements:
+            remove_cart_button = app.product_list.remove_button()
+            remove_cart_button.click()
+            num_items_in_cart -= 1
+        assert (
+            app.product_list.get_cart_counter() == num_items_in_cart
+        ), a.wrong_cart_counter
+        assert remove_cart_button.text == button.add_to_cart

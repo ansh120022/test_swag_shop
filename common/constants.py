@@ -20,3 +20,18 @@ class AuthErrors:
         "Epic sadface: Username and password do not match any user in this service"
     )
     locked_user = "Epic sadface: Sorry, this user has been locked out."
+
+
+class ButtonCaptions:
+    """Названия разных кнопок"""
+
+    remove = "REMOVE"
+    add_to_cart = "ADD TO CART"
+
+
+class AssertText:
+    """Пояснения для assert'ов"""
+
+    wrong_cart_counter = (
+        "Число товаров на счётчике корзины не соответствует числу добавленных в корзину"
+    )

@@ -4,7 +4,9 @@ from selenium.webdriver.common.by import By
 
 
 class ProductList:
-    ADD_TO_CART_BUTTON = (By.CLASS_NAME, "btn_primary")
+    ADD_TO_CART_BUTTON = (By.XPATH, '//*[@class="btn_primary btn_inventory"]')
+    REMOVE_BUTTON = (By.XPATH, '//*[@class="btn_secondary btn_inventory"]')
+
     LEFT_MENU_BUTTON = (
         By.CSS_SELECTOR,
         "#menu_button_container > div > div:nth-child(3) > div > button",

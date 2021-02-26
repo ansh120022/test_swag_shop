@@ -70,6 +70,9 @@ class ProductList:
     def click_sort(self):
         self.menu_dropdown().click()
 
+    def click_cart(self):
+        self.cart_link().click()
+
     def do_sort_name_a_z(self):
         self.click_sort()
         sort_option = WebDriverWait(self.app.driver, 5).until(
@@ -106,3 +109,9 @@ class ProductList:
             return int(counter_value)
         else:
             return 0
+
+    def add_all_to_cart(self):
+        products = self.app.driver.find_elements(*p.ITEM)
+        for product in products:
+            add_cart_button = product.find_element_by_xpath(p.ADD_TO_CART_BUTTON_XPATH)
+            add_cart_button.click()

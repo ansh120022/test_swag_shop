@@ -1,3 +1,6 @@
+"Тесты для страницы продукта" ""
+
+
 class TestProductPage:
     def test_go_to_product_details(self, app):
         """Проверка, что произведён переход именно на выбранный эелемент"""

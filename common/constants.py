@@ -35,3 +35,11 @@ class AssertText:
     wrong_cart_counter = (
         "Число товаров на счётчике корзины не соответствует числу добавленных в корзину"
     )
+
+
+class ClientData:
+    """Данные клиента"""
+
+    firstname = "Anastasia"
+    surname = "Sh"
+    postal_code = "603000"

@@ -8,7 +8,7 @@ class TestItemsList:
         app.open_main_page()
         app.login.do_login_standart()
         product_names = app.product_list.get_list_of_product_names()
-        assert len(product_names) > 0, "Товары не отображаются"
+        assert len(product_names) > 0, a.no_items
 
 
 class TestSorting:

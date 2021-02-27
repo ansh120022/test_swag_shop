@@ -1,5 +1,7 @@
 """Тесты для страницы продукта"""
 
+from common.constants import AssertText as a, Subheaders as s
+
 
 class TestProductPage:
     def test_go_to_product_details(self, app):
@@ -21,8 +23,8 @@ class TestProductPage:
         app.product.click_back()
         product_names = app.product_list.get_list_of_product_names()
 
-        assert app.product_list.header() == "Products"
-        assert len(product_names) > 0, "Товары не отображаются"
+        assert app.product_list.header() == s.products
+        assert len(product_names) > 0, a.no_items
 
     def test_cart(self, app):
         """Добавление и удаление из корзины на этой странице"""

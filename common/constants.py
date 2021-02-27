@@ -2,7 +2,7 @@
 
 
 class Credentials:
-    """Логины и пароли пользователей"""
+    """Логины и пароли тестовых пользователей"""
 
     standard_user = "standard_user"
     locked_out_user = "locked_out_user"
@@ -41,6 +41,7 @@ class AssertText:
     )
     no_expected_error = "Ошибка не возникла, либо её текст не совпадает с ожидаемым"
     no_error_icon = "Ожидаемая иконка ошибки отсутствует"
+    no_items = "Товары не отображаются"
 
 
 class ClientData:
@@ -49,6 +50,15 @@ class ClientData:
     firstname = "Anastasia"
     surname = "Sh"
     postal_code = "603000"
+
+
+class Subheaders:
+    """Заголовки страниц"""
+
+    products = "Products"
+    finish = "Finish"
+    checkout_overview = "Checkout: Overview"
+    your_cart = "Your Cart"
 
 
 # Список страниц сайта

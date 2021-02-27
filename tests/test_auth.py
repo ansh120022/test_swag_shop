@@ -21,12 +21,12 @@ class TestLogin:
         product_names = app.product_list.get_list_of_product_names()
 
         assert app.login.error_icon() == []
-        assert len(product_names) > 0, "Товары не отображаются"
+        assert len(product_names) > 0, a.no_items
 
     def test_do_login_performance(self, app):
         """
         Пользователь с медленным интернетом
-        Авторируется, видит каталог
+        Авторизуется, видит каталог
         """
 
         app.open_main_page()
@@ -34,7 +34,7 @@ class TestLogin:
         product_names = app.product_list.get_list_of_product_names()
 
         assert app.login.error_icon() == []
-        assert len(product_names) > 0, "Товары не отображаются"
+        assert len(product_names) > 0, a.no_items
 
     def test_do_login_locked(self, app):
         """
@@ -74,7 +74,8 @@ class TestLogin:
         assert app.login.error_icon() != [], a.no_error_icon
 
     def test_unauthorized_access(self, app):
-        """Неавторизованному пользователю недоступны страницы сайта"""
+        """Неавторизованному пользователю при обращении по прямой ссылке
+        недоступны страницы сайта"""
         for url in urls:
             app.open_page(url)
             error = app.login.get_error_text()

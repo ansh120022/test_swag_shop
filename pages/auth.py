@@ -1,10 +1,7 @@
-import logging
-from locators.auth import Login
+from locators.auth import Login as p
 from common.constants import Credentials as u
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-
-logger = logging.getLogger()
 
 
 class LoginPage:
@@ -12,23 +9,23 @@ class LoginPage:
         self.app = app
 
     def username_field(self):
-        return self.app.driver.find_element(*Login.USERNAME_INPUT)
+        return self.app.driver.find_element(*p.USERNAME_INPUT)
 
     def password_field(self):
-        return self.app.driver.find_element(*Login.PASSWORD_INPUT)
+        return self.app.driver.find_element(*p.PASSWORD_INPUT)
 
     def submit_button(self):
-        return self.app.driver.find_element(*Login.LOGIN_SUBMIT)
+        return self.app.driver.find_element(*p.LOGIN_SUBMIT)
 
     def error_icon(self):
-        return self.app.driver.find_elements(*Login.ERROR_ICON)
+        return self.app.driver.find_elements(*p.ERROR_ICON)
 
     def error_text(self):
-        return self.app.driver.find_element(*Login.ERROR_TEXT)
+        return self.app.driver.find_element(*p.ERROR_TEXT)
 
     def get_error_text(self):
         WebDriverWait(self.app.driver, 5).until(
-            EC.presence_of_element_located(Login.ERROR_TEXT)
+            EC.presence_of_element_located(p.ERROR_TEXT)
         )
         return self.error_text().text
 

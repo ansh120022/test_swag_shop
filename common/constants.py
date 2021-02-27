@@ -21,6 +21,10 @@ class AuthErrors:
     )
     locked_user = "Epic sadface: Sorry, this user has been locked out."
 
+    @staticmethod
+    def unauthorized_error(url):
+        return f"Epic sadface: You can only access '/{url}' when you are logged in."
+
 
 class ButtonCaptions:
     """Названия разных кнопок"""
@@ -35,3 +39,17 @@ class AssertText:
     wrong_cart_counter = (
         "Число товаров на счётчике корзины не соответствует числу добавленных в корзину"
     )
+    no_expected_error = "Ошибка не возникла, либо её текст не совпадает с ожидаемым"
+    no_error_icon = "Ожидаемая иконка ошибки отсутствует"
+
+
+class ClientData:
+    """Данные клиента"""
+
+    firstname = "Anastasia"
+    surname = "Sh"
+    postal_code = "603000"
+
+
+# Список страниц сайта
+PAGES_URLS = ["inventory.html", "cart.html"]

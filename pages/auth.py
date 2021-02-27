@@ -1,6 +1,8 @@
 import logging
 from locators.auth import Login
 from common.constants import Credentials as u
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
 
 logger = logging.getLogger()
 
@@ -25,6 +27,9 @@ class LoginPage:
         return self.app.driver.find_element(*Login.ERROR_TEXT)
 
     def get_error_text(self):
+        WebDriverWait(self.app.driver, 5).until(
+            EC.presence_of_element_located(Login.ERROR_TEXT)
+        )
         return self.error_text().text
 
     def do_login_standart(self):

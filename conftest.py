@@ -25,12 +25,12 @@ def pytest_addoption(parser):
     parser.addoption(
         "--base-url",
         action="store",
-        default="https://www.saucedemo.com//",
+        default="https://www.saucedemo.com/",
         help="enter base_url",
     ),
     parser.addoption(
         "--headless",
         action="store",
-        default=False,
+        default=True,
         help="launching browser without gui",
     )

@@ -1,11 +1,6 @@
-import logging
-
 from selenium.webdriver.support.wait import WebDriverWait
 from locators.product_list import ProductList as p
 from selenium.webdriver.support import expected_conditions as EC
-
-
-logger = logging.getLogger()
 
 
 class ProductList:
@@ -41,7 +36,7 @@ class ProductList:
         return products
 
     def items_list(self):
-        return self.app.driver.find_element(*p.ITEMS_LIST)
+        return self.app.driver.find_elements(*p.ITEMS_LIST)
 
     def sort_dropdown(self):
         return self.app.driver.find_element(*p.SORT_DROPDOWN)
@@ -62,7 +57,7 @@ class ProductList:
         return self.app.driver.find_element(*p.SORT_DROPDOWN)
 
     def header(self):
-        return self.app.driver.find_element(*p.HEADER)
+        return self.app.driver.find_element(*p.HEADER).text
 
     def get_list_of_product_names(self):
         products = self.app.driver.find_elements(*p.ITEM_NAME)
@@ -74,6 +69,9 @@ class ProductList:
 
     def click_sort(self):
         self.menu_dropdown().click()
+
+    def click_cart(self):
+        self.cart_link().click()
 
     def do_sort_name_a_z(self):
         self.click_sort()
@@ -111,3 +109,9 @@ class ProductList:
             return int(counter_value)
         else:
             return 0
+
+    def add_all_to_cart(self):
+        products = self.app.driver.find_elements(*p.ITEM)
+        for product in products:
+            add_cart_button = product.find_element_by_xpath(p.ADD_TO_CART_BUTTON_XPATH)
+            add_cart_button.click()

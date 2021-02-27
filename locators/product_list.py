@@ -14,6 +14,8 @@ class ProductList:
     CART_COUNTER = (By.CLASS_NAME, "shopping_cart_badge")
     CART_LINK = (By.CLASS_NAME, "shopping_cart_link")
 
+    ADD_TO_CART_BUTTON_XPATH = ".//div[3]/button"
+
     ITEM_NAME = (By.CLASS_NAME, "inventory_item_name")
     ITEM_PRICE = (By.CLASS_NAME, "inventory_item_price")
     ITEM = (By.CLASS_NAME, "inventory_item")

@@ -1,4 +1,6 @@
 import pytest
+import allure
+import os
 
 from pages.application import Application
 
@@ -19,6 +21,29 @@ def login(request, app):
     app.open_main_page()
     if app.login.logout_button() == 0:
         app.login.auth(login, passwd)
+
+
+@pytest.hookimpl(tryfirst=True, hookwrapper=True)
+def pytest_runtest_makereport(item, call):
+    """Отчёт со скриншотами"""
+    outcome = yield
+    rep = outcome.get_result()
+    if rep.when == "call" and rep.failed:
+        mode = "a" if os.path.exists("failures") else "w"
+        try:
+            with open("failures", mode):
+                if "app" in item.fixturenames:
+                    web_driver = item.funcargs["app"]
+                else:
+                    print("Fail to take screen-shot")
+                    return
+            allure.attach(
+                web_driver.driver.get_screenshot_as_png(),
+                name="screenshot",
+                attachment_type=allure.attachment_type.PNG,
+            )
+        except Exception as e:
+            print("Fail to take screen-shot: {}".format(e))
 
 
 def pytest_addoption(parser):

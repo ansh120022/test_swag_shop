@@ -8,7 +8,7 @@ class OverviewPage:
         self.app = app
 
     def get_subheader(self):
-        element = self.app.driver.find_element(*p.subheader_selector)
+        element = self.app.driver.find_element(*p.SUBHEADER)
         return element.text
 
     def click_cancel(self):

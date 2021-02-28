@@ -42,6 +42,7 @@ class AssertText:
     no_expected_error = "Ошибка не возникла, либо её текст не совпадает с ожидаемым"
     no_error_icon = "Ожидаемая иконка ошибки отсутствует"
     no_items = "Товары не отображаются"
+    wrong_page = "Произведён переход на неверную страницу"
 
 
 class ClientData:
@@ -57,6 +58,7 @@ class Subheaders:
 
     products = "Products"
     finish = "Finish"
+    checkout_info = "Checkout: Your Information"
     checkout_overview = "Checkout: Overview"
     your_cart = "Your Cart"
 

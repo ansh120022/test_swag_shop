@@ -4,8 +4,8 @@ import allure
 
 
 class TestItemsList:
-    @allure.epic("Страница каталога")
-    @allure.story("Наличие товаров на странице")
+    # @allure.epic("Страница каталога")
+    # @allure.story("Наличие товаров на странице")
     def test_view(self, app):
         """
         Проверка факта отображения товаров в каталоге
@@ -21,9 +21,9 @@ class TestSorting:
     Проверка сортировки в каталоге по алфавиту и цене
     """
 
-    @allure.epic("Страница каталога")
-    @allure.feature("Сортировка")
-    @allure.story("Сортировка Z-A")
+    # @allure.epic("Страница каталога")
+    # @allure.feature("Сортировка")
+    # @allure.story("Сортировка Z-A")
     def test_sort_z_to_a(self, app):
         app.open_main_page()
         app.login.do_login_standart()
@@ -35,9 +35,9 @@ class TestSorting:
                 f"{product_names[i]}, {product_names[i + 1]}"
             )
 
-    @allure.epic("Страница каталога")
-    @allure.feature("Сортировка")
-    @allure.story("Сортировка A-Z")
+    # @allure.epic("Страница каталога")
+    # @allure.feature("Сортировка")
+    # @allure.story("Сортировка A-Z")
     def test_sort_a_to_z(self, app):
         app.open_main_page()
         app.login.do_login_standart()
@@ -49,9 +49,9 @@ class TestSorting:
                 f"{product_names[i]}, {product_names[i + 1]}"
             )
 
-    @allure.epic("Страница каталога")
-    @allure.feature("Сортировка")
-    @allure.story("Сортировка по возрастанию цены")
+    # @allure.epic("Страница каталога")
+    # @allure.feature("Сортировка")
+    # @allure.story("Сортировка по возрастанию цены")
     def test_sort_low_to_high(self, app):
         app.open_main_page()
         app.login.do_login_standart()
@@ -63,9 +63,9 @@ class TestSorting:
                 f" {product_prices[i + 1]}"
             )
 
-    @allure.epic("Страница каталога")
-    @allure.feature("Сортировка")
-    @allure.story("Сортировка по убыванию цены")
+    # @allure.epic("Страница каталога")
+    # @allure.feature("Сортировка")
+    # @allure.story("Сортировка по убыванию цены")
     def test_sort_high_to_low(self, app):
         app.open_main_page()
         app.login.do_login_standart()
@@ -83,9 +83,9 @@ class TestAddToCart:
     Проверка взаимодействия с корзиной со страницы каталога
     """
 
-    @allure.severity("Blocker")
-    @allure.epic("Страница каталога")
-    @allure.story("Добавление в корзину из каталога")
+    # @allure.severity("Blocker")
+    # @allure.epic("Страница каталога")
+    # @allure.story("Добавление в корзину из каталога")
     def test_add_to_cart(self, app):
         with allure.step("Добавить товары, проверить счётчик корзины"):
             app.open_main_page()

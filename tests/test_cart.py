@@ -1,12 +1,12 @@
 """Проверка всех функций корзины: возврат в каталог,
 переход к оформлению, удаление товаров из корзины"""
-import allure
+# import allure
 from common.constants import AssertText as a, Subheaders as s
 
 
 class TestCart:
-    @allure.epic("Корзина")
-    @allure.story("Возврат в каталог")
+    # @allure.epic("Корзина")
+    # @allure.story("Возврат в каталог")
     def test_continue_shopping_button(self, app):
         """
         1.Переход из каталога в корзину
@@ -20,9 +20,9 @@ class TestCart:
 
         assert len(app.product_list.get_list_of_product_names()) > 0, a.no_items
 
-    @allure.epic("Корзина")
-    @allure.story("Переход к оформлению заказа")
-    @allure.severity("Blocker")
+    # @allure.epic("Корзина")
+    # @allure.story("Переход к оформлению заказа")
+    # @allure.severity("Blocker")
     def test_checkout_button(self, app):
         """
         1. Перейти в корзину
@@ -35,9 +35,9 @@ class TestCart:
         app.cart.click_checkout()
         assert app.overview.get_subheader() == s.checkout_info, a.wrong_page
 
-    @allure.epic("Корзина")
-    @allure.story("Удаление из корзины")
-    @allure.severity("Blocker")
+    # @allure.epic("Корзина")
+    # @allure.story("Удаление из корзины")
+    # @allure.severity("Blocker")
     def test_remove_from_cart(self, app):
         """
         1. Добавляем все отображаемые товары в корзину

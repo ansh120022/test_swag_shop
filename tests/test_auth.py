@@ -1,14 +1,15 @@
 """Тесты на авторизацию для аккаунтов в различных состояниях"""
 from common.constants import AuthErrors, PAGES_URLS as urls, AssertText as a
-import allure
-from pytest_testrail.plugin import pytestrail
+
+# import allure
+# from pytest_testrail.plugin import pytestrail
 
 
 class TestLogin:
-    @allure.epic("Авторизация")
-    @allure.story("Обычный пользователь")
-    @allure.severity("Blocker")
-    @pytestrail.case("C3")
+    # @allure.epic("Авторизация")
+    # @allure.story("Обычный пользователь")
+    # @allure.severity("Blocker")
+    # @pytestrail.case("C3")
     def test_auth(self, app):
         """
         Позитивный тест
@@ -29,9 +30,9 @@ class TestLogin:
         assert app.login.error_icon() != []
         assert len(product_names) > 0, a.no_items
 
-    @allure.epic("Авторизация")
-    @allure.story("Заблокированный пользователь")
-    @pytestrail.case("C4")
+    # @allure.epic("Авторизация")
+    # @allure.story("Заблокированный пользователь")
+    # @pytestrail.case("C4")
     def test_do_login_locked(self, app):
         """
         1. Вводим заблокированный логин
@@ -44,8 +45,8 @@ class TestLogin:
         assert app.login.error_icon() != [], a.no_error_icon
         assert app.login.get_error_text() == AuthErrors.locked_user, a.no_expected_error
 
-    @allure.epic("Авторизация")
-    @allure.story("Несуществующий пользователь")
+    # @allure.epic("Авторизация")
+    # @allure.story("Несуществующий пользователь")
     def test_do_login_nonexistent(self, app):
         """
         1. Вводим несуществующий логин
@@ -60,8 +61,8 @@ class TestLogin:
         ), a.no_expected_error
         assert app.login.error_icon() != [], a.no_error_icon
 
-    @allure.epic("Авторизация")
-    @allure.story("Неверный пароль")
+    # @allure.epic("Авторизация")
+    # @allure.story("Неверный пароль")
     def test_do_login_wrong_pass(self, app):
         """
         1. Пользователь вводит неверный пароль
@@ -76,8 +77,8 @@ class TestLogin:
         ), a.no_expected_error
         assert app.login.error_icon() != [], a.no_error_icon
 
-    @allure.epic("Авторизация")
-    @allure.story("Доступ к сайту без авторизации")
+    # @allure.epic("Авторизация")
+    # @allure.story("Доступ к сайту без авторизации")
     def test_unauthorized_access(self, app):
         """
         1. Пользователь не авторизован

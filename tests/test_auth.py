@@ -1,12 +1,14 @@
 """Тесты на авторизацию для аккаунтов в различных состояниях"""
 from common.constants import AuthErrors, PAGES_URLS as urls, AssertText as a
 import allure
+from pytest_testrail.plugin import pytestrail
 
 
 class TestLogin:
     @allure.epic("Авторизация")
     @allure.story("Обычный пользователь")
     @allure.severity("Blocker")
+    @pytestrail.case("C3")
     def test_auth(self, app):
         """
         Позитивный тест
@@ -24,11 +26,12 @@ class TestLogin:
         app.login.do_login_standart()
         product_names = app.product_list.get_list_of_product_names()
 
-        assert app.login.error_icon() == []
+        assert app.login.error_icon() != []
         assert len(product_names) > 0, a.no_items
 
     @allure.epic("Авторизация")
     @allure.story("Заблокированный пользователь")
+    @pytestrail.case("C4")
     def test_do_login_locked(self, app):
         """
         1. Вводим заблокированный логин

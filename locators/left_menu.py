@@ -1,10 +1,11 @@
+"""Элементы меню, которое появляется в левой части магазина по клику на кнопку-бургер"""
 from selenium.webdriver.common.by import By
 
 
 class LeftMenu:
-    SIDE_MENU = By.XPATH, "//div[@class='bm-menu']"
-    SIDE_MENU_CLOSE_BUTTON = By.XPATH, "//div[@class='bm-cross-button']"
-    ALL_ITEMS = (By.XPATH, "//a[@id='inventory_sidebar']")
-    ABOUT = (By.XPATH, "//a[@id='about_sidebar']")
-    LOGOUT = (By.XPATH, "//a[@id='logout_sidebar']")
-    RESET_APP = (By.XPATH, "//a[@id='reset_sidebar']")
+    MENU_BUTTON = (By.ID, "bm-burger-button")
+    CLOSE_BUTTON = (By.ID, "react-burger-cross-btn")
+    ALL_ITEMS = (By.ID, "inventory_sidebar_link")
+    ABOUT = (By.ID, "about_sidebar_link")
+    LOGOUT = (By.ID, "logout_sidebar_link")
+    RESET_APP = (By.ID, "reset_sidebar_link")

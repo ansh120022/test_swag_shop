@@ -14,13 +14,14 @@ def app(request):
     app.browser_close()
 
 
-@pytest.fixture(scope="class")
+@pytest.fixture()
 def login(request, app):
     login = request.config.getoption("--username")
     passwd = request.config.getoption("--password")
     app.open_main_page()
-    if app.login.logout_button() == 0:
-        app.login.auth(login, passwd)
+    if app.left_menu.logout_button() != []:
+        app.left_menu.click_logout()
+    app.login.do_login(login, passwd)
 
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
@@ -58,4 +59,16 @@ def pytest_addoption(parser):
         action="store",
         default=True,
         help="launching browser without gui",
+    ),
+    parser.addoption(
+        "--username",
+        action="store",
+        default="standard_user",
+        help="user login",
+    ),
+    parser.addoption(
+        "--password",
+        action="store",
+        default="secret_sauce",
+        help="user password",
     )

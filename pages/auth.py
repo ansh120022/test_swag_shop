@@ -1,5 +1,4 @@
 from locators.auth import Login as p
-from common.constants import Credentials as u
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -29,32 +28,7 @@ class LoginPage:
         )
         return self.error_text().text
 
-    def do_login_standart(self):
-        self.username_field().send_keys(u.standard_user)
-        self.password_field().send_keys(u.passwd)
-        self.submit_button().click()
-
-    def do_login_locked(self):
-        self.username_field().send_keys(u.locked_out_user)
-        self.password_field().send_keys(u.passwd)
-        self.submit_button().click()
-
-    def do_login_problem(self):
-        self.username_field().send_keys(u.problem_user)
-        self.password_field().send_keys(u.passwd)
-        self.submit_button().click()
-
-    def do_login_performance(self):
-        self.username_field().send_keys(u.performance_user)
-        self.password_field().send_keys(u.passwd)
-        self.submit_button().click()
-
-    def do_login_nonexistent(self):
-        self.username_field().send_keys(u.any_str)
-        self.password_field().send_keys(u.passwd)
-        self.submit_button().click()
-
-    def do_login_wrong_pass(self):
-        self.username_field().send_keys(u.standard_user)
-        self.password_field().send_keys(u.any_str)
+    def do_login(self, login, passwd):
+        self.username_field().send_keys(login)
+        self.password_field().send_keys(passwd)
         self.submit_button().click()

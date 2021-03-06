@@ -1,11 +1,8 @@
 import pytest
 import allure
 import os
-import logging
 
 from pages.application import Application
-
-logger = logging.getLogger("app")
 
 
 @pytest.fixture(scope="session")

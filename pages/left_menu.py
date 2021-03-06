@@ -1,4 +1,7 @@
 from locators.left_menu import LeftMenu as p
+import logging
+
+logger = logging.getLogger("app")
 
 
 class LeftMenuPage:
@@ -36,6 +39,7 @@ class LeftMenuPage:
         self.about_element.click()
 
     def click_logout(self):
+        logger.info("Выход из аккаунта")
         self.logout_button.click()
 
     def click_reset_app(self):

@@ -29,7 +29,9 @@ class LoginPage:
         WebDriverWait(self.app.driver, 5).until(
             EC.presence_of_element_located(p.ERROR_TEXT)
         )
-        return self.error_text().text
+        error_text = self.error_text().text
+        logger.info(f"Возникла ошибка {error_text}")
+        return error_text
 
     def do_login(self, login, passwd):
         logger.info(f"Вход с логином {login} и паролем {passwd}")

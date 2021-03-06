@@ -1,4 +1,7 @@
 from locators.cart import CartPage as p
+import logging
+
+logger = logging.getLogger("app")
 
 
 class CartPage:
@@ -21,9 +24,11 @@ class CartPage:
         return self.app.driver.find_element(*p.SUBHEADER).text
 
     def click_continue_shopping(self):
+        logger.info("Возврат обратно в каталог")
         self.continue_shopping_button().click()
 
     def click_checkout(self):
+        logger.info("Переход к оформлению заказа")
         self.checkout_button().click()
 
     def remove_all_from_cart(self):
@@ -32,6 +37,7 @@ class CartPage:
             remove = self.app.driver.find_element(*p.REMOVE_BUTTON)
             remove.click()
             remove_buttons = self.app.driver.find_elements(*p.REMOVE_BUTTON)
+        logger.info("Корзина очищена")
 
     def get_sum_prices(self):
         """Рассчёт суммы товаров в корзине"""
@@ -39,4 +45,5 @@ class CartPage:
         total = 0.0
         for price in price_elements:
             total += float(price.text)
+        logger.info(f"Сумма товаров в корзине: {total}")
         return total

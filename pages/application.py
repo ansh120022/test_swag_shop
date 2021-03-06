@@ -40,7 +40,7 @@ class Application:
         self.driver.get(self.url)
 
     def open_page(self, url: str):
-        logger.info(f"Открылась страница {self.url}{url}")
+        logger.info(f"Запрошена страница {self.url}{url}")
         self.driver.get(f"{self.url}{url}")
 
     def browser_close(self):

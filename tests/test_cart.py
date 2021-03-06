@@ -1,10 +1,8 @@
 """Проверка всех функций корзины: возврат в каталог,
 переход к оформлению, удаление товаров из корзины"""
 import allure
-import logging
-from common.constants import AssertText as a, Subheaders as s
 
-logger = logging.getLogger("app")
+from common.constants import AssertText as a, Subheaders as s
 
 
 class TestCart:
@@ -16,12 +14,9 @@ class TestCart:
         2.Переход обратно
         3.Проверка, что снова отображается каталог
         """
-        logger.info("Переход в корзину")
-        app.product_list.click_cart()
-        logger.info("Переход обратно в каталог")
-        app.cart.click_continue_shopping()
 
-        logger.info("Проверка, что открылся каталог")
+        app.product_list.click_cart()
+        app.cart.click_continue_shopping()
         assert len(app.product_list.get_list_of_product_names()) > 0, a.no_items
 
     @allure.epic("Корзина")
@@ -33,11 +28,9 @@ class TestCart:
         2. Нажать на кнопку Continue
         3. Открывается страница оформления заказа
         """
-        logger.info("Переход в корзину")
+
         app.product_list.click_cart()
-        logger.info("Переход далее")
         app.cart.click_checkout()
-        logger.info("Проверка, что открылась страница оформления заказа")
         assert app.overview.get_subheader() == s.checkout_info, a.wrong_page
 
     @allure.epic("Корзина")
@@ -51,13 +44,9 @@ class TestCart:
         2. Удаляем все товары из корзины
         3. Отображается сумма 0
         """
-        logger.info("Добавление всех товаров в корзину")
+
         app.product_list.add_all_to_cart()
-        logger.info("Переход в корзину")
         app.product_list.click_cart()
-        logger.info("Проверка, что сумма в корзине пересчиталась")
         assert app.cart.get_sum_prices() != 0.0
-        logger.info("Удаление всех товаров из корзины")
         app.cart.remove_all_from_cart()
-        logger.info("Проверка, что сумма стала 0")
         assert app.cart.get_sum_prices() == 0.0

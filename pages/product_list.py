@@ -1,6 +1,9 @@
 from selenium.webdriver.support.wait import WebDriverWait
 from locators.product_list import ProductList as p
 from selenium.webdriver.support import expected_conditions as EC
+import logging
+
+logger = logging.getLogger("app")
 
 
 class ProductList:
@@ -17,7 +20,12 @@ class ProductList:
         return self.app.driver.find_element(*p.LEFT_MENU_BUTTON)
 
     def cart_counter(self):
-        return self.app.driver.find_element(*p.CART_COUNTER)
+        num_items_in_cart = 0
+        has_items_in_cart = len(self.app.driver.find_elements(*p.CART_COUNTER)) > 0
+        if has_items_in_cart:
+            num_items_in_cart = int(self.app.driver.find_element(*p.CART_COUNTER).text)
+        return int(num_items_in_cart)
+        logger.info(f"Товаров в корзине: {num_items_in_cart}")
 
     def cart_link(self):
         return self.app.driver.find_element(*p.CART_LINK)
@@ -61,6 +69,7 @@ class ProductList:
 
     def get_list_of_product_names(self):
         products = self.app.driver.find_elements(*p.ITEM_NAME)
+        logger.info("Выполнен переход в каталог, отображаются товары.")
         return [item.text for item in products]
 
     def get_list_of_product_prices(self):
@@ -71,7 +80,12 @@ class ProductList:
         self.menu_dropdown().click()
 
     def click_cart(self):
+        logger.info("Переход в корзину")
         self.cart_link().click()
+
+    def click_item_name(self):
+        logger.info("Переход на страницу товара")
+        self.item_name().click()
 
     def do_sort_name_a_z(self):
         self.click_sort()
@@ -79,6 +93,7 @@ class ProductList:
             EC.presence_of_element_located(p.SORT_NAME_A_Z)
         )
         sort_option.click()
+        logger.info("Выполнена сортировка a-z")
 
     def do_sort_name_z_a(self):
         self.click_sort()
@@ -86,6 +101,7 @@ class ProductList:
             EC.presence_of_element_located(p.SORT_NAME_Z_A)
         )
         sort_option.click()
+        logger.info("Выполнена сортировка z-a")
 
     def do_sort_price_high_low(self):
         self.click_sort()
@@ -93,6 +109,7 @@ class ProductList:
             EC.presence_of_element_located(p.SORT_PRICE_HIGH_LOW)
         )
         sort_option.click()
+        logger.info("Выполнена сортировка по убыванию цены")
 
     def do_sort_price_low_high(self):
         self.click_sort()
@@ -100,17 +117,19 @@ class ProductList:
             EC.presence_of_element_located(p.SORT_PRICE_LOW_HIGH)
         )
         sort_option.click()
+        logger.info("Выполнена сортировка по возрастанию цены")
 
     def get_cart_counter(self):
         """Значение счётчика на корзине"""
+        counter_value = 0
         not_empty = len(self.app.driver.find_elements(*p.CART_COUNTER)) > 0
         if not_empty:
-            counter_value = self.app.driver.find_element(*p.CART_COUNTER).text
-            return int(counter_value)
-        else:
-            return 0
+            counter_value = int(self.app.driver.find_element(*p.CART_COUNTER).text)
+        logger.info(f"Число товаров в корзине: {counter_value}")
+        return counter_value
 
     def add_all_to_cart(self):
+        logger.info("Добавление товаров в корзину")
         products = self.app.driver.find_elements(*p.ITEM)
         for product in products:
             add_cart_button = product.find_element_by_xpath(p.ADD_TO_CART_BUTTON_XPATH)

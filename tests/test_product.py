@@ -20,7 +20,7 @@ class TestProductPage:
     @allure.epic("Страница товара")
     @allure.story("Переход обратно в каталог")
     def test_back_button(self, app, login):
-        app.product_list.item_name().click()
+        app.product_list.click_item_name()
         app.product.click_back()
         product_names = app.product_list.get_list_of_product_names()
 
@@ -35,12 +35,12 @@ class TestProductPage:
         Добавление и удаление из корзины на этой странице
         """
 
-        with allure.step("Добавить в корзину"):
-            app.product_list.item_name().click()
+        with allure.step("Добавление в корзину"):
+            app.product_list.click_item_name()
             app.product.click_add_to_cart()
 
         assert app.product.cart_counter() == 1
 
-        with allure.step("Удалить из корзины"):
+        with allure.step("Удаление из корзины"):
             app.product.click_add_to_cart()
             assert app.product.cart_counter() == 0

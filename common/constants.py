@@ -48,8 +48,8 @@ class AssertText:
 class ClientData:
     """Данные клиента"""
 
-    firstname = "Anastasia"
-    surname = "Sh"
+    firstname = "Анастасия"
+    surname = "Шаховнина"
     postal_code = "603000"
 
 

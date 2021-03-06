@@ -3,7 +3,10 @@ from common.constants import AuthErrors, PAGES_URLS as urls, AssertText as a
 import pytest
 from common.constants import Credentials as u
 import allure
+import logging
 from pytest_testrail.plugin import pytestrail
+
+logger = logging.getLogger("app")
 
 
 class TestLogin:
@@ -53,10 +56,13 @@ class TestLogin:
         """
 
         app.open_main_page()
+        logger.info(f"Вход с логином {login} и паролем {passwd}")
         app.login.do_login(login, passwd)
 
+        actual_error = app.login.get_error_text()
+        logger.info(f"Возникла ошибка {actual_error}")
         assert app.login.error_icon() != [], a.no_error_icon
-        assert app.login.get_error_text() == expected_error, a.no_expected_error
+        assert actual_error == expected_error, a.no_expected_error
 
     @allure.epic("Авторизация")
     @allure.story("Доступ к сайту без авторизации")
@@ -68,6 +74,8 @@ class TestLogin:
         """
 
         for url in urls:
+            logger.info(f"Попытка попасть без авторизации на страницу {url}")
             app.open_page(url)
             error = app.login.get_error_text()
+            logger.info(f"Возникла ошибка {error}")
             assert error == AuthErrors.unauthorized_error(url)

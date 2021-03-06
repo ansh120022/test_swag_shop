@@ -1,6 +1,9 @@
 from locators.auth import Login as p
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
+import logging
+
+logger = logging.getLogger("app")
 
 
 class LoginPage:
@@ -29,6 +32,7 @@ class LoginPage:
         return self.error_text().text
 
     def do_login(self, login, passwd):
+        logger.info(f"Вход с логином {login} и паролем {passwd}")
         self.username_field().send_keys(login)
         self.password_field().send_keys(passwd)
         self.submit_button().click()

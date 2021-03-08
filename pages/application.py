@@ -20,12 +20,20 @@ class Application:
         if headless:
             options.add_argument("--headless")
         self.url = url
-        try:
-            self.driver = webdriver.Chrome(
-                ChromeDriverManager().install(), options=options
-            )
-        except ValueError:
-            self.driver = webdriver.Chrome(r"C:\chromedriver.exe", options=options)
+
+        chrome_options = webdriver.ChromeOptions()
+        self.driver = webdriver.Remote(
+            command_executor='http://localhost:4444/wd/hub',
+            options=chrome_options
+        )
+        # driver.get("http://www.google.com")
+        # driver.quit()
+        # try:
+        #     self.driver = webdriver.Chrome(
+        #         ChromeDriverManager().install(), options=options
+        #     )
+        # except ValueError:
+        #     self.driver = webdriver.Chrome(r"C:\chromedriver.exe", options=options)
         self.login = LoginPage(self)
         self.product_list = ProductList(self)
         self.product = ProductPage(self)

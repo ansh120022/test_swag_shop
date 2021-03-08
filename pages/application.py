@@ -1,7 +1,6 @@
 import logging
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
 from pages.auth import LoginPage
 from pages.product_list import ProductList
 from pages.product import ProductPage
@@ -24,17 +23,8 @@ class Application:
 
         chrome_options = webdriver.ChromeOptions()
         self.driver = webdriver.Remote(
-            command_executor='http://localhost:4444/wd/hub',
-            options=chrome_options
+            command_executor="http://localhost:4444/wd/hub", options=chrome_options
         )
-        # driver.get("http://www.google.com")
-        # driver.quit()
-        # try:
-        #     self.driver = webdriver.Chrome(
-        #         ChromeDriverManager().install(), options=options
-        #     )
-        # except ValueError:
-        #     self.driver = webdriver.Chrome(r"C:\chromedriver.exe", options=options)
         self.login = LoginPage(self)
         self.product_list = ProductList(self)
         self.product = ProductPage(self)

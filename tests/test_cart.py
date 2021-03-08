@@ -15,7 +15,7 @@ class TestCart:
         3.Проверка, что снова отображается каталог
         """
 
-        app.product_list.click_cart()
+        app.cart_icon.click_cart()
         app.cart.click_continue_shopping()
         assert len(app.product_list.get_list_of_product_names()) > 0, a.no_items
 
@@ -29,7 +29,7 @@ class TestCart:
         3. Открывается страница оформления заказа
         """
 
-        app.product_list.click_cart()
+        app.cart_icon.click_cart()
         app.cart.click_checkout()
         assert app.overview.get_subheader() == s.checkout_info, a.wrong_page
 
@@ -46,7 +46,7 @@ class TestCart:
         """
 
         app.product_list.add_all_to_cart()
-        app.product_list.click_cart()
+        app.cart_icon.click_cart()
         assert app.cart.get_sum_prices() != 0.0
         app.cart.remove_all_from_cart()
         assert app.cart.get_sum_prices() == 0.0

@@ -13,7 +13,7 @@ class TestCheckout_YourInformationPage:
         """Test the name and postal code input boxes on the checkout page."""
 
         with allure.step("Переход на страницу заказа"):
-            app.product_list.click_cart()
+            app.cart_icon.click_cart()
             app.cart.click_checkout()
 
         with allure.step("Попытка продолжить без заполнения формы"):
@@ -38,7 +38,7 @@ class TestCheckout_YourInformationPage:
     @allure.feature("Заполнение данных клиента")
     @allure.story("Отмена, возврат обратно")
     def test_cancel(self, app):
-        app.product_list.click_cart()
+        app.cart_icon.click_cart()
         app.cart.click_checkout()
         app.checkout.click_cancel()
         assert app.cart.subheader() == s.your_cart
@@ -49,7 +49,7 @@ class TestCheckout_OverviewPage:
     @allure.feature("Просмотр сформированного заказа")
     @allure.story("Отмена, возврат обратно")
     def test_cancel(self, app):
-        app.product_list.click_cart()
+        app.cart_icon.click_cart()
         app.cart.click_checkout()
         app.checkout.input_first_name(client.firstname)
         app.checkout.input_last_name(client.surname)
@@ -64,7 +64,7 @@ class TestCheckout_OverviewPage:
     @allure.feature("Просмотр сформированного заказа")
     @allure.story("Подтверждение заказа")
     def test_finish_button(self, app):
-        app.product_list.click_cart()
+        app.cart_icon.click_cart()
         app.cart.click_checkout()
         app.checkout.fill_form(client.firstname, client.surname, client.postal_code)
         app.checkout.click_continue()

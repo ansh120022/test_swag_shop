@@ -10,6 +10,7 @@ from pages.checkout import CheckoutPage
 from pages.overview import OverviewPage
 from pages.order_confirmation import OrderConfirmationPage
 from pages.left_menu import LeftMenuPage
+from pages.cart_icon import CartIconElement
 
 logger = logging.getLogger("app")
 
@@ -34,6 +35,7 @@ class Application:
         self.overview = OverviewPage(self)
         self.order_confirmation = OrderConfirmationPage(self)
         self.left_menu = LeftMenuPage(self)
+        self.cart_icon = CartIconElement(self)
 
     def open_main_page(self):
         logger.info("Открылась главная страница")

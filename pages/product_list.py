@@ -19,17 +19,6 @@ class ProductList:
     def left_menu_button(self):
         return self.app.driver.find_element(*p.LEFT_MENU_BUTTON)
 
-    def cart_counter(self):
-        num_items_in_cart = 0
-        has_items_in_cart = len(self.app.driver.find_elements(*p.CART_COUNTER)) > 0
-        if has_items_in_cart:
-            num_items_in_cart = int(self.app.driver.find_element(*p.CART_COUNTER).text)
-        return int(num_items_in_cart)
-        logger.info(f"Товаров в корзине: {num_items_in_cart}")
-
-    def cart_link(self):
-        return self.app.driver.find_element(*p.CART_LINK)
-
     def item_name(self):
         return self.app.driver.find_element(*p.ITEM_NAME)
 
@@ -79,10 +68,6 @@ class ProductList:
     def click_sort(self):
         self.menu_dropdown().click()
 
-    def click_cart(self):
-        logger.info("Переход в корзину")
-        self.cart_link().click()
-
     def click_item_name(self):
         logger.info("Переход на страницу товара")
         self.item_name().click()
@@ -118,15 +103,6 @@ class ProductList:
         )
         sort_option.click()
         logger.info("Выполнена сортировка по возрастанию цены")
-
-    def get_cart_counter(self):
-        """Значение счётчика на корзине"""
-        counter_value = 0
-        not_empty = len(self.app.driver.find_elements(*p.CART_COUNTER)) > 0
-        if not_empty:
-            counter_value = int(self.app.driver.find_element(*p.CART_COUNTER).text)
-        logger.info(f"Число товаров в корзине: {counter_value}")
-        return counter_value
 
     def add_all_to_cart(self):
         logger.info("Добавление товаров в корзину")

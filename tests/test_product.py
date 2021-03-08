@@ -39,8 +39,8 @@ class TestProductPage:
             app.product_list.click_item_name()
             app.product.click_add_to_cart()
 
-        assert app.product.cart_counter() == 1
+        assert app.cart_icon.get_cart_counter() == 1
 
         with allure.step("Удаление из корзины"):
             app.product.click_add_to_cart()
-            assert app.product.cart_counter() == 0
+            assert app.cart_icon.get_cart_counter() == 0

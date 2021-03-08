@@ -11,8 +11,6 @@ class ProductList:
         By.CSS_SELECTOR,
         "#menu_button_container > div > div:nth-child(3) > div > button",
     )
-    CART_COUNTER = (By.CLASS_NAME, "shopping_cart_badge")
-    CART_LINK = (By.CLASS_NAME, "shopping_cart_link")
 
     ADD_TO_CART_BUTTON_XPATH = ".//div[3]/button"
 

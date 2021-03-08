@@ -86,7 +86,7 @@ class TestAddToCart:
             product_elements = app.product_list.get_all_products()
             num_items_in_cart = 0
             assert (
-                num_items_in_cart == app.product_list.get_cart_counter()
+                num_items_in_cart == app.cart_icon.get_cart_counter()
             ), a.wrong_cart_counter
 
         with allure.step("Добавить товары, проверить счётчик корзины"):
@@ -95,7 +95,7 @@ class TestAddToCart:
                 add_cart_button.click()
                 num_items_in_cart += 1
             assert (
-                app.product_list.get_cart_counter() == num_items_in_cart
+                app.cart_icon.get_cart_counter() == num_items_in_cart
             ), a.wrong_cart_counter
             assert add_cart_button.text == button.remove
 
@@ -105,6 +105,6 @@ class TestAddToCart:
                 remove_cart_button.click()
                 num_items_in_cart -= 1
             assert (
-                app.product_list.get_cart_counter() == num_items_in_cart
+                app.cart_icon.get_cart_counter() == num_items_in_cart
             ), a.wrong_cart_counter
             assert remove_cart_button.text == button.add_to_cart

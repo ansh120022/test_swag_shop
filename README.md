@@ -26,7 +26,7 @@ pytest --testrail --tr-config=testrail.cfg --alluredir=reports
 ```bash
 allure serve reports
 ```
-Allure уже должен быть установлен локально, если нет, следуйте [инструкции](https://docs.qameta.io/allure/ "инструкции")
+Allure уже должен быть установлен локально, для этого следуйте [инструкции](https://docs.qameta.io/allure/ "инструкции")
 
 Если требуется запуск под конкретным пользователем, можно использовать параметры
  ```bash

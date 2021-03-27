@@ -13,9 +13,15 @@
 ```bash
 docker run -d --name selenium -p 4444:4444 selenium/standalone-chrome
 ```
+Создать виртуальное окружение:
+
+```bash
+python -m venv env && source env/bin/activate
+```
+
 Установить зависимости:
 ```bash
-pip install -r requirements.txt
+cd test_swag_shop && pip install -r requirements.txt
 ```
 Запустить тесты
 ```bash

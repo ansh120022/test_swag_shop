@@ -27,7 +27,7 @@ cd test_swag_shop && pip install -r requirements.txt
 ```bash
 pytest --testrail --tr-config=testrail.cfg --alluredir=reports
 ```
-Построить отчёт по результататам:
+Построить отчёт по результатам:
 
 ```bash
 allure serve reports
